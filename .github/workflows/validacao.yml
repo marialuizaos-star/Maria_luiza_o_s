@@ -1,0 +1,17 @@
+name: Validação do Projeto
+on: 
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+      - name: repositorio e usuario
+        run: echo "Repositório ${{ github.repository }} | Usuário ${{ github.actor }}"
+      - name: lista de arquivos
+        run: ls ${{ github.workspace }}
+      - name: verificar README
+        run: test -f README.md
+      - name: status
+        run: echo "Validação concluída! Status ${{ job.status }}"
